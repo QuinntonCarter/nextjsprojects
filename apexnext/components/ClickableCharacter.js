@@ -1,10 +1,8 @@
-import { Box, Image, Flex, Text, Grid } from '@chakra-ui/react';
+import { Box, Image, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import menuStyles from '../styles/Menu.module.css';
 
 const ClickableCharacter = ({name, legend, data, icon, selectedLegend, setHoveredLegend, setSelectedLegend}) => {
-
-    console.log(selectedLegend[0] && selectedLegend[0])
     // set css styling based on data present; import from module.css
     const selectable = data ? (selectedLegend[0] === name ? menuStyles.selected : menuStyles.selectable ): menuStyles.notSelectable
 

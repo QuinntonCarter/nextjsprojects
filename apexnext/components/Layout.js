@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Header from './Header.js';
-import StatsViewer from './StatsViewer.js';
-import Search from './Search.js';
-import axios from 'axios';
 import { Flex } from '@chakra-ui/react';
+import axios from 'axios';
+import Header from './Header.js';
+import Search from './Search.js';
+import StatsViewer from './StatsViewer.js';
 
 import ThreeScene from './scene/ThreeScene.js';
 
@@ -11,9 +11,12 @@ const apexAPI = axios.create({
     baseURL: process.env.NEXT_PUBLIC_APEXAPIURL
 })
 
-const Layout = ({children}) => {
+const Layout = () => {
     const [ platform, setPlatform ] = useState(false);
     const [ player, setPlayer ] = useState(null);
+
+    const [ hoveredLegend, setHoveredLegend ] = useState([]);
+    const [ selectedLegend, setSelectedLegend ] = useState([]);
 
     const [ foundStats, setFoundStats ] = useState({});
     const [ error, setError ] = useState([]);
@@ -32,22 +35,21 @@ const Layout = ({children}) => {
         })
         .then(res => {
             if(res.data.Error){
-
                 showError(res.data.Error)
             } else {
             setFoundStats({
                 // ** assign this all to variables to be passed down to statsviewer **
                     playerName: res.data.global.name,
-                    playerLvl: res.data.global?.level,
+                    playerLvl: res.data.global.level,
                     totalData: res.data.total,
                     banStatus: [res.data.global.bans],
-                    currentArenaRank: [res.data.global?.arena],
+                    currentArenaRank: [res.data.global.arena],
                     currentBrRank: [res.data.global.rank],
                     recentlyUsedLegend: res.data.legends.selected
             }), setPlayerLegendData(res.data.legends.all)
         }})
         .catch(err => showError(err.response.data.Error))
-
+        // .catch(err => console.log(err))
     }
     
     // doesn't work
@@ -73,6 +75,10 @@ const Layout = ({children}) => {
                 <StatsViewer
                     player={player}
                     foundStats={foundStats}
+                    selectedLegend={selectedLegend}
+                    setSelectedLegend={setSelectedLegend}
+                    hoveredLegend={hoveredLegend}
+                    setHoveredLegend={setHoveredLegend}
                     recentlyUsedLegend={foundStats.recentlyUsedLegend}
                     parsedLegendData={parsedPlayerLegendData}
                     playerLegendData={playerLegendData}

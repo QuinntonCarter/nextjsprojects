@@ -3,8 +3,8 @@
 # Tweaks
 -   add all kill values for accurate display of total kills in SelectedCharacter view
 -   finish adding stats to selected character view; shorthand in menu nameDisplay lower bar = also => add player stats to menu somewhere
--   figure out error handling for bad search
--   fix selectedCharacter image move on selection of legend
+X   figure out error handling for bad search
+X   fix selectedCharacter image move on selection of legend
 -   add recent match stats to banner at top of screen
 # CSS
 X   fix content to it all fits on screen

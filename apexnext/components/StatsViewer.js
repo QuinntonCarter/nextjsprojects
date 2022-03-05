@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { Grid, Flex, Box, Text } from '@chakra-ui/react';
+import menuStyles from '../styles/Menu.module.css';
 import Image from 'next/image';
+
 import apexLogoWhite from '../public/apex-logo-white.png';
 import Characters from './Characters';
 import SelectedCharacter from './SelectedCharacter';
-import menuStyles from '../styles/Menu.module.css';
 
-const StatsViewer = ({player, foundStats, recentlyUsedLegend, parsedLegendData, playerLegendData}) => {
-
-    const [ hoveredLegend, setHoveredLegend ] = useState([]);
-    const [ selectedLegend, setSelectedLegend ] = useState([]);
+const StatsViewer = ({player, foundStats, selectedLegend, setSelectedLegend, hoveredLegend, setHoveredLegend, recentlyUsedLegend, parsedLegendData, playerLegendData}) => {
     const [ killsAsLegend, setKillsAsLegend ] = useState([]);
 
     // let viewableName = !hoveredLegend[0] ? selectedLegend[0] : hoveredLegend[0]
-    // console.log()
 
     return (
         <> {foundStats.totalData &&

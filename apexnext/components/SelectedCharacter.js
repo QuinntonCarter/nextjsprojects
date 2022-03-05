@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GridItem, Image, Text, Box } from '@chakra-ui/react';
+import { GridItem, Text, Box } from '@chakra-ui/react';
 import menuStyles from '../styles/Menu.module.css';
 
 
@@ -7,7 +7,6 @@ const SelectedCharacter = ({hoveredName, hoveredData, recentlyUsedLegend, select
     // ** find way to map object values and if key contains 'kills' add value for more accurate total kills **
     const totalKills = (kills, kills2, kills3) => {
         let total
-
     }
 
     const mappedData = selectedLegend[1] && selectedLegend[1].data.map(data => 
@@ -29,7 +28,8 @@ const SelectedCharacter = ({hoveredName, hoveredData, recentlyUsedLegend, select
     )
     // use to calculate kills of selected legend on select
     useEffect(() => {
-        console.log(selectedLegend[1] && selectedLegend[1].data)
+        // selectedLegend[1] && selectedLegend[1].data.filter(val => 
+        //     val.name)
     },[selectedLegend])
 
     return (
