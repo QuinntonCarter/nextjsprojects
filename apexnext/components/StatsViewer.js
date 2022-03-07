@@ -13,35 +13,36 @@ const StatsViewer = ({player, foundStats, selectedLegend, setSelectedLegend, hov
     // let viewableName = !hoveredLegend[0] ? selectedLegend[0] : hoveredLegend[0]
 
     return (
-        <> {foundStats.totalData &&
-            <Flex flexDirection={'column'} alignItems={'center'} height={'auto'} width={'100%'}>
-                <p className={menuStyles.totalKills}> {`${player} Total Kills ${foundStats.totalData?.kills.value}`} </p>
-                <Flex flexDirection={'row'}>
-                    <Grid templateColumns={'repeat(2, 1fr)'}>
-                        <SelectedCharacter
-                            position={'relative'}
-                            recentlyUsedLegend={recentlyUsedLegend}
-                            foundStats={foundStats}
-                            hoveredName={hoveredLegend[0]}
-                            hoveredData={hoveredLegend[1]}
-                            selectedLegend={selectedLegend}
-                            setKillsAsLegend={setKillsAsLegend}
-                        />
-                        <Characters
-                            position={'relative'}
-                            legends={foundStats}
-                            parsedLegendData={parsedLegendData}
-                            playerLegendData={playerLegendData}
-                            hoveredLegend={hoveredLegend}
-                            selectedLegend={selectedLegend}
-                            setHoveredLegend={setHoveredLegend}
-                            setSelectedLegend={setSelectedLegend}
+        <Box className={menuStyles.mainContainer}> 
+            {foundStats.totalData &&
+                <Flex flexDirection={'column'} alignItems={'center'} height={'auto'} width={'100%'}>
+                    <p className={menuStyles.totalKills}> {`${player} Total Kills ${foundStats.totalData?.kills.value}`} </p>
+                    <Flex flexDirection={'row'}>
+                        <Grid templateColumns={'repeat(2, 1fr)'}>
+                            <SelectedCharacter
+                                position={'relative'}
+                                recentlyUsedLegend={recentlyUsedLegend}
+                                foundStats={foundStats}
+                                hoveredName={hoveredLegend[0]}
+                                hoveredData={hoveredLegend[1]}
+                                selectedLegend={selectedLegend}
+                                setKillsAsLegend={setKillsAsLegend}
                             />
-                    </Grid>
-                    {/* display of hovered characters and selected */}
+                            <Characters
+                                position={'relative'}
+                                legends={foundStats}
+                                parsedLegendData={parsedLegendData}
+                                playerLegendData={playerLegendData}
+                                hoveredLegend={hoveredLegend}
+                                selectedLegend={selectedLegend}
+                                setHoveredLegend={setHoveredLegend}
+                                setSelectedLegend={setSelectedLegend}
+                                />
+                        </Grid>
+                        {/* display of hovered characters and selected */}
+                    </Flex>
                 </Flex>
-            </Flex>
-            }
+                }
             <Box
                 display={!foundStats.totalData && 'none'}
                 position={'absolute'}
@@ -79,7 +80,7 @@ const StatsViewer = ({player, foundStats, selectedLegend, setSelectedLegend, hov
                     }
                 </Text>
             </Box>
-        </>
+        </Box>
     )
 }
 

@@ -17,7 +17,7 @@ const ClickableCharacter = ({name, legend, data, icon, selectedLegend, setHovere
                 display={'flex'}
                 title={`click to select ${name}`}
                 flexDirection={'column'}
-                borderWidth='4px'
+                borderWidth='2.7px'
                 align={'center'}>
                     <Box bgColor={'transparent'}>
                         <Image
@@ -40,7 +40,7 @@ const ClickableCharacter = ({name, legend, data, icon, selectedLegend, setHovere
                 display={'flex'}
                 title={`No player data provided by API for ${name}`}
                 flexDirection={'column'}
-                borderWidth='4px'
+                borderWidth='2.7px'
                 align={'center'}>
                     <Image
                         src={icon}
@@ -52,7 +52,7 @@ const ClickableCharacter = ({name, legend, data, icon, selectedLegend, setHovere
                         // boxSize='90'
                     />
                     <Text>
-                        <p className={menuStyles.selectableName} color='gray'> {name} </p>
+                        <p className={menuStyles.selectableName} color='rgb(161, 161, 161)'> {name} </p>
                     </Text>
             </Flex>
         }
