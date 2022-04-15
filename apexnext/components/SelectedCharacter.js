@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { GridItem, Text, Box } from '@chakra-ui/react';
-import menuStyles from '../styles/Menu.module.css';
+import menuStyles from '../styles/Menu.module.scss';
 
 
 const SelectedCharacter = ({hoveredName, hoveredData, recentlyUsedLegend, selectedLegend}) => {
@@ -10,44 +9,30 @@ const SelectedCharacter = ({hoveredName, hoveredData, recentlyUsedLegend, select
     }
 
     const mappedData = selectedLegend[1] && selectedLegend[1].data.map(data => 
-        <Box
-            zIndex={5}
-            display={'flex'}
-            flexDirection={'column'}
-            alignItems={'center'}
-            justifyContent={'center'}
-            key={data.name+data.value}>
-            <Text
-                backgroundColor={'transparent'}
-                fontWeight={'bold'}
-                lineHeight={'7vh'}
-                color={'white'}>
-                    {data.name === 'Kills' ? `Kills as ${selectedLegend[0]}`: data.name} : {data.value}
-            </Text>
-        </Box>
+        // zndex: 3; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        <div key={data.name+data.value}>
+                {/* background-color: transparent; font-weight: bold; line-height: 7vh; color: white; */}
+            <h5>
+                {data.name === 'Kills' ? `Kills as ${selectedLegend[0]}`: data.name} : {data.value}
+            </h5>
+        </div>
     )
     // use to calculate kills of selected legend on select
-    useEffect(() => {
-        // selectedLegend[1] && selectedLegend[1].data.filter(val => 
-        //     val.name)
-    },[selectedLegend])
+    // useEffect(() => {
+    //     // selectedLegend[1] && selectedLegend[1].data.filter(val => 
+    //     //     val.name)
+    // },[selectedLegend])
 
     return (
         // ** maybe append image onto svg foggy card **
-        <GridItem
-            fontFamily={'Apex Sub'}
+        // z-index: 1; height: 96vh; width: 50vw; padding: 6px 0px 6px 0px; margin: auto 2px auto auto; background-position: 50% 20%; background-repeat: no-repeat; font-family: Apex Sub;
+        // grid item
+        <div
             className={menuStyles.characterDisplayImage}
-            paddingTop={6}
-            paddingBottom={6}
-            marginRight={2}
-            height={'96vh'}
-            width={'50vw'}
-            bgImage={selectedLegend[1] ? `url(${selectedLegend[1].ImgAssets.icon})` : hoveredData && hoveredData.ImgAssets.icon}
-            bgPosition={'50% 20%'}
-            bgRepeat={'no-repeat'}
+            styles={{backgroundimage: `${selectedLegend[1] ? `url(${selectedLegend[1].ImgAssets.icon})` : hoveredData && hoveredData.ImgAssets.icon}`}}
             >
             {mappedData && mappedData}
-        </GridItem>
+        </div>
     )
 }
 

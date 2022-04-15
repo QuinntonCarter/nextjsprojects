@@ -1,10 +1,10 @@
-import { Flex } from '@chakra-ui/react';
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 
 const Nav = () => {
     return (
-        <Flex direction='row'>
+        // display: flex; flex-direction: row;
+        <div>
             <ul>
                 <li>
                     <Link href='/stats'> stats </Link>
@@ -13,7 +13,7 @@ const Nav = () => {
                     <Link href='/about'> about </Link>
                 </li>
             </ul>
-        </Flex>
+        </div>
     )
 }
 

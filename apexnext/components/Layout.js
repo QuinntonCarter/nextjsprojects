@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { Flex } from '@chakra-ui/react';
 import axios from 'axios';
 import Header from './Header.js';
 import Search from './Search.js';
 import StatsViewer from './StatsViewer.js';
+import menuStyles from '../styles/Menu.module.scss';
 
-import ThreeScene from './scene/ThreeScene.js';
+import smoke3 from '../public/0010.png'
+import smoke4 from '../public/0020.png'
+import smoke5 from '../public/0030.png'
+import smoke6 from '../public/0040.png'
+import smoke7 from '../public/0050.png'
 
 const apexAPI = axios.create({
     baseURL: process.env.NEXT_PUBLIC_APEXAPIURL
 })
 
-const Layout = () => {
+const Layout = (props) => {
     const [ platform, setPlatform ] = useState(false);
     const [ player, setPlayer ] = useState(null);
 
@@ -38,6 +42,7 @@ const Layout = () => {
                 showError(res.data.Error)
             } else {
             setFoundStats({
+                
                 // ** assign this all to variables to be passed down to statsviewer **
                     playerName: res.data.global.name,
                     playerLvl: res.data.global.level,
@@ -49,10 +54,8 @@ const Layout = () => {
             }), setPlayerLegendData(res.data.legends.all)
         }})
         .catch(err => showError(err.response.data.Error))
-        // .catch(err => console.log(err))
     }
-    
-    // doesn't work
+
     const showError = err => {
         setError(err)
     }
@@ -61,8 +64,14 @@ const Layout = () => {
 
     return (
         <>
-            <Flex flexDirection={'column'} >
-                <Header/>
+            <div>
+                {/* {/* <Image src={smoke2} alt="smoke background image" className={menuStyles.smokeBG_two} position={'absolute'} zIndex={0} left={'-100'}/> */}
+                {/* <Image src={smoke3} alt="smoke background image" className={menuStyles.smokeBG_three} position={'absolute'} zIndex={0}/>
+                <Image src={smoke4} alt="smoke background image" className={menuStyles.smokeBG_four} position={'absolute'} zIndex={0}/>
+                <Image src={smoke5} alt="smoke background image" className={menuStyles.smokeBG_five} position={'absolute'} zIndex={0}/>
+                <Image src={smoke6} alt="smoke background image" className={menuStyles.smokeBG_six} position={'absolute'} zIndex={0}/>
+                <Image src={smoke7} alt="smoke background image" className={menuStyles.smokeBG_seven} position={'absolute'} zIndex={0}/> */}
+                <Header playerLegendData={playerLegendData}/>
                 <Search
                     platform={platform}
                     setPlatform={setPlatform}
@@ -83,12 +92,10 @@ const Layout = () => {
                     parsedLegendData={parsedPlayerLegendData}
                     playerLegendData={playerLegendData}
                 />
-                {/* {children} */}
-                {/* move hoveredLegend and selectedLegend states to top so can be passed to this component */}
-            </Flex>
-            {/* <ThreeScene /> */}
+                {props.children}
+            </div>
         </>
     )
-}
+};
 
 export default Layout;

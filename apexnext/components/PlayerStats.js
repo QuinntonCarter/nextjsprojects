@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 const CharacterStats = props => {
@@ -9,9 +8,9 @@ const CharacterStats = props => {
 
 
     return (
-        <Box >
+        <div >
 
-        </Box>
+        </div>
     )
 }
 

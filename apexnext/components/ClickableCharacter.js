@@ -1,60 +1,58 @@
-import { Box, Image, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import menuStyles from '../styles/Menu.module.css';
+// imported to prevent prerendering issue when using next/image
+import { Image } from '@chakra-ui/image';
+import menuStyles from '../styles/Menu.module.scss';
 
 const ClickableCharacter = ({name, legend, data, icon, selectedLegend, setHoveredLegend, setSelectedLegend}) => {
     // set css styling based on data present; import from module.css
-    const selectable = data ? (selectedLegend[0] === name ? menuStyles.selected : menuStyles.selectable ): menuStyles.notSelectable
+    const selectable = data ? (selectedLegend[0] === name ? menuStyles.selected : menuStyles.selectable ) : menuStyles.notSelectable
 
     return (
         <>
         { data ?
-            <Flex
+        // display: flex; flex-direction: column; align-items: center; border: solid 2.7px gray;
+            <div
                 onMouseEnter={() => setHoveredLegend(legend)}
                 onMouseLeave={() => setHoveredLegend('')}
                 onClick={() => setSelectedLegend(legend)}
                 className={`${selectable} `}
-                display={'flex'}
-                title={`click to select ${name}`}
-                flexDirection={'column'}
-                borderWidth='2.7px'
-                align={'center'}>
-                    <Box bgColor={'transparent'}>
+                title={`click to select ${name}`}>
+                    {/* background-color: transparent; */}
+                    <div>
+                        {/* width: auto; height: 100%; position: relative; transform: skewX(18deg) */}
                         <Image
                             src={icon}
-                            position={'relative'}
                             alt={`${name} selectable icon in menu`}
-                            style={{ transform: 'skewX(18deg)' }}
-                            w={'6vw'}
-                            h={'12vh'}
-                            // boxSize='90'
+                            w={'auto'}
+                            h={'100%'}
+                            position={'relative'}
+                            transform={'skewX(18deg)'}
                         />
-                    </Box>
-                <Text bgColor={(selectedLegend[0] === name ? 'orange' : 'gray')}>
+                    </div>
+                <h6 style={{ backgroundColor:`${selectedLegend[0] === name ? 'orange' : 'gray'}` }}>
                     <p className={menuStyles.selectableName}> {name} </p>
-                </Text>
-            </Flex>
+                </h6>
+            </div>
         :
-            <Flex
+        // display: flex; flex-direction: column; border: 2.7px solid gray; align-items: center;
+            <div
                 className={`${selectable}`}
-                display={'flex'}
-                title={`No player data provided by API for ${name}`}
-                flexDirection={'column'}
-                borderWidth='2.7px'
-                align={'center'}>
+                title={`No player data provided by API for ${name}`}>
+                    {/* width: auto; height: 100%; position: relative; filter: grayscale(100%); transform: skewX(18deg) */}
                     <Image
                         src={icon}
-                        position={'relative'}
                         alt={`${name} none selectable icon in menu`}
-                        style={{ filter: 'grayscale(100%)', transform: 'skewX(18deg)' }}
-                        w={'6vw'}
-                        h={'12vh'}
-                        // boxSize='90'
+                        w={'auto'}
+                        h={'100%'}
+                        position={'relative'}
+                        transform={'skewX(18deg'}
                     />
-                    <Text>
-                        <p className={menuStyles.selectableName} color='rgb(161, 161, 161)'> {name} </p>
-                    </Text>
-            </Flex>
+                    {/* maybe don't need div here? */}
+                    {/* <Text> */}
+                    {/* color: rgb(161, 161, 161) */}
+                        <p className={menuStyles.selectableName} style={{ color:'rgb(161, 161, 161)' }}> {name} </p>
+                    {/* </Text> */}
+            </div>
         }
     </>
     )

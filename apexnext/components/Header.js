@@ -1,29 +1,27 @@
 import React from 'react';
-import { Flex } from '@chakra-ui/react';
-import headerStyles from '../styles/Header.module.css';
+import Image from 'next/image'
+import headerStyles from '../styles/Header.module.scss';
+import { header_logo__height } from '../styles/typography.module.scss';
 import apexLegendsLogo from '../public/apex-legends-logo.svg';
-import Image from 'next/image';
 
 const Header = () => {
     return (
-        <Flex justifyContent={'center'}>
-            <h1 className={headerStyles.title}> 
-                {/* <span> Apex Legends </span> */}
-                <Image
-                    title='Apex Legends logo and IP trademark Electronic Arts'
-                    src={apexLegendsLogo}
-                    width={'360px'}
-                    height={'260px'}
-                    alt='Apex legends svg logo trademark of Electronic Arts'/>
-                <a title='Data provided by https://apexlegendsapi.com/'>
-                    <br/>
-                    Unofficial
-                    <br/>
-                    Player Stats Viewer 
-                </a>
-            </h1>
-        </Flex>
+        <div className={headerStyles.header_container}>
+            <Image
+                className={headerStyles.header_logo}
+                title='Apex Legends logo and IP trademark Electronic Arts'
+                height={ header_logo__height }
+                src={apexLegendsLogo}
+                alt='Apex legends svg logo trademark of Electronic Arts'/>
+                <p> Apex Legends logo and IP trademark Electronic Arts </p>
+            <h3 title='Data provided by https://apexlegendsapi.com/'>
+                <br/>
+                Unofficial
+                <br/>
+                Player Stats Viewer
+            </h3>
+        </div>
     )
-}
+};
 
 export default Header;

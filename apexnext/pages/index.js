@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import homeStyles from '../styles/Home.module.scss';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className={homeStyles.container}>
       <Head>
         <title> Welcome Legends </title>
         <meta name="description" content="Account stats viewer for cross platform title, Apex Legends" />

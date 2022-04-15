@@ -1,0 +1,21 @@
+// * variables *
+// breakpoints
+$break_min__width: 320px;
+// header
+$header_logo__height: 400;
+
+// * mixins *
+// header 
+@mixin headerSubHeader {
+    font-size: 3vw;
+    margin: auto;
+    text-align: center;
+    font-family: 'Apex Sub';
+    @media screen and (min-width: $break_min__width) {
+        font-size: 4.5vw;
+    }
+}
+
+:export {
+    header_logo__height: $header_logo__height
+}

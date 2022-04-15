@@ -27,18 +27,75 @@
 
 /* Main container */
 .mainContainer {
-    background-image: linear-gradient(217deg, gold, orange, red);
+    background: linear-gradient(217deg, gold, orange, red);
+    overflow: hidden;
+    /* position: relative; */
 }
+.smokeBG {
+    z-index: 0;
+}
+
+.smokeBG {
+
+}
+    
+
+.smokeBG_two {
+    animation: rotation 35.5s infinite linear;
+    inset: 10%;
+    z-index: 0;
+    /* position: absolute; */
+}
+.smokeBG_three {
+    animation: rotation 30.75s infinite linear;
+    z-index: 0;
+    position: absolute;
+}
+
+.smokeBG_four {
+    animation: rotation 30.1s infinite linear;
+    z-index: 0;
+    position: absolute
+}
+
+.smokeBG_five {
+    animation: rotation 301.25s infinite linear;
+    z-index: 0;
+    position: absolute;
+}
+
+.smokeBG_six {
+    animation: rotation 25.5s infinite linear;
+    z-index: 0;
+    position: absolute;
+}
+
+.smokeBG_seven {
+    animation: rotation 20.2s infinite linear;
+    z-index: 0
+}
+
+@keyframes rotation {
+    from {
+    transform: rotate(0deg);
+    }
+    to {
+    transform: rotate(359.99deg);
+    }
+}
+
 
 /* Name above selectable characters */
 .hoveredName {
+    z-index: 4;
     background-color: rgba(238, 238, 238, 0.315);
     border-bottom: solid 1.7vh rgba(243, 243, 243, 0.384);
     width: 49.63vw;
     height: 12vh;
-    position: relative;
+    /* position: relative; */
     transform: skewX(-28deg);
     transform-origin: bottom left;
+
     /* testing */
     /* background-color: rgba(235, 23, 23, 0.486);
     border-bottom: solid 1.7vh rgba(173, 42, 42, 0.849); */
@@ -46,17 +103,19 @@
 
 .hoveredNameDisplay {
     color: rgba(97, 97, 97, 0.781);
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     flex-direction: row;
     align-self: center;
-    z-index: 2;
+    z-index: 4;
     text-align: center;
     letter-spacing: .15vw;
     font-size: 10vh;
     font-family: Apex Sub;
     font-weight: bold;
     height: 5vh;
+    /* position: relative; */
+    /* top: 0 */
 
 }
 
@@ -95,11 +154,14 @@
 
 .characterDisplay > p > span {
     font-size: 1.7vh;
-    position: absolute;
+    /* position: absolute; */
 }
+
+
 
 .characterDisplayImage {
     height: 96vh;
+    width: auto;
     align-content: center;
     justify-content: center;
     display: flex;
@@ -108,7 +170,7 @@
 
 /* selectable grid */
 .characterContainer {
-    position: relative;
+    /* position: relative; */
     display: flex;
     margin-top: 7vh;
 }

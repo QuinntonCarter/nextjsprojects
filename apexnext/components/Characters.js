@@ -1,12 +1,10 @@
 import React from 'react';
-import menuStyles from '../styles/Menu.module.css';
-import { Text, Flex, SimpleGrid, Box } from '@chakra-ui/react';
+import menuStyles from '../styles/Menu.module.scss';
 import ClickableCharacter from './ClickableCharacter';
 
 const Characters = ({playerLegendData, selectedLegend, hoveredLegend, setHoveredLegend, setSelectedLegend}) => {
-    // const parsedPlayerLegendData = Object.entries(playerLegendData).map(entry => entry[1].data ? entry : null).filter(entry => entry !== null)
-
-    const mappedCharacters = Object.entries(playerLegendData).map(entry => entry[1].data ? 
+    // filters out "global" entry and returns player data to be viewed in selection chart
+    const mappedCharacters = Object.entries(playerLegendData).filter(entry => entry[0] !== 'Global').map(entry => entry.keys() !== 'Global' && entry[1].data ? 
         <ClickableCharacter
             selectedLegend={selectedLegend}
             setHoveredLegend={setHoveredLegend}
@@ -25,37 +23,30 @@ const Characters = ({playerLegendData, selectedLegend, hoveredLegend, setHovered
     )
 
     return (
-        <Flex flexDirection={'column'} overflow={'hidden'}>
+        // display: flex; flex-direction: column; overflow: hidden;
+        <div>
             {!selectedLegend[0] ?
-                hoveredLegend[0] && 
-                <>
-                    <Box
-                        className={menuStyles.hoveredName}
-                        border={'transparent'}
-                        backgroundColor={'transparent'}/>
-                    <Text className={menuStyles.hoveredNameDisplay}> 
-                        {hoveredLegend[0]}
-                    </Text>
-                </>
+                hoveredLegend[0] &&
+                    <div
+                    // border: transparent; background-color: transparent;
+                        className={menuStyles.hoveredName}> 
+                        {/* maybe h1? */}
+                        <h2 className={menuStyles.hoveredNameDisplay}> 
+                            {hoveredLegend[0]}
+                        </h2>
+                    </div>
                     :
-                    <>
-                        <Box className={menuStyles.hoveredName}/>
-                        <Text className={menuStyles.hoveredNameDisplay}> 
+                    <div className={menuStyles.hoveredName}> 
+                        <h2 className={menuStyles.hoveredNameDisplay}> 
                             {selectedLegend[0]}
-                        </Text>
-                    </>
-            } 
-            <SimpleGrid
-                className={menuStyles.characterContainer}
-                columns={5}
-                gridRowGap={1}
-                gridColumnGap={1}
-                position={'absolute'}
-                top={'62vh'}
-                >
+                        </h2>
+                    </div>
+            }
+            {/* display: grid; grid-template-columns: auto auto auto auto auto; grid-row-gap: 3%; grid-column-gap: 5%; position: absolute; top: 65vh;  */}
+            <div className={menuStyles.characterContainer}>
                 {mappedCharacters}
-            </SimpleGrid>
-        </Flex>
+            </div>
+        </div>
     )
 }
 
